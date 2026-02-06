@@ -8,6 +8,6 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './chat.html',
   styleUrl: './chat.scss',
 })
-export class Chat {
+export class ChatComponent {
 
 }
