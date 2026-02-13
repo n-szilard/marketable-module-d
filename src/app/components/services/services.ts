@@ -1,10 +1,11 @@
 
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { Footer } from "../footer/footer";
 
 @Component({
   selector: 'app-services',
-  imports: [RouterModule],
+  imports: [RouterModule, Footer],
   templateUrl: './services.html',
   styleUrl: './services.scss',
 })
