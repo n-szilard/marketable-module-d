@@ -1,7 +1,8 @@
 
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { Footer } from "../footer/footer";
+import { ApiService } from '../../services/api.service';
+import { Footer } from '../footer/footer'
 
 @Component({
   selector: 'app-services',
@@ -12,20 +13,28 @@ import { Footer } from "../footer/footer";
 export class ServicesComponent {
 
 
-  constructor(private router:Router){}
+  constructor(
+    private router: Router,
+    private api: ApiService
+  ) { }
 
-popUp(){
-  let token = prompt("Add meg a tokent!")
+  popUp() {
+    let token = prompt("Add meg a tokent!")
+    if (token == null) {
+      return;
+    }
 
-  if(token=='13508a659a2dbab0a825622c43aef5b5133f85502bfdeae0b6' || token=='b8ef2feea8a2bf982d637b5ff4be4771d2ef46f3564c5ecd7b'){
-
-    this.router.navigate(['/chat'])
+    this.api.startConversation(token, 'string').subscribe({
+      next: (res) => {
+        alert('jo')
+        console.log(res);
+      },
+      error: (error) => {
+        alert('nemjo');
+        console.log(error);
+      }
+    })
 
   }
-  else{
-    alert('Hibás token!')
-  }
-
-}
 
 }
