@@ -42,6 +42,11 @@ export class ServicesComponent {
             )
             break;
           case AIType.ImageGen:
+            this.router.navigate(['/image-generation'], {
+              state: {
+                token: token
+              }
+            })
             break;
           case AIType.ImageRec:
             this.router.navigate(['/imagerecognition'], {
