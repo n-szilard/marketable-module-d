@@ -16,7 +16,7 @@ export const routes: Routes = [
         ],
     },
   */      
-    {path: 'image-generation', component: ImageGeneratorComponent }
+    {path: 'image-generation', component: ImageGeneratorComponent },
     { path: 'services', component: ServicesComponent },
     { path: 'imagerecognition', component: ImageRecognition },
 ];
