@@ -41,19 +41,36 @@ export class ApiService {
     return false;
   }
 
-  startConversation(token: string, prompt: string):Observable<ChatResponse> {
-    const headers = new HttpHeaders({
-      'accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-API-TOKEN': token
-    });
 
-    const body = {
-      prompt: prompt
-    };
+// +++ CHAT +++
 
-    return this.http.post(this.apiUrl+'/chat/conversation', body, { headers });
-  }
+startConversation(token: string, prompt: string): Observable<ChatResponse> {
+  const headers = new HttpHeaders({
+    'accept': 'application/json',
+    'Content-Type': 'application/json',
+    'X-API-TOKEN': token
+  });
+
+  return this.http.post<ChatResponse>(
+    `${this.apiUrl}/chat/conversation`,
+    { prompt },
+    { headers }
+  );
+}
+
+continueConversation(token: string, conversationId: string, prompt: string): Observable<ChatResponse> {
+  const headers = new HttpHeaders({
+    'accept': 'application/json',
+    'Content-Type': 'application/json',
+    'X-API-TOKEN': token
+  });
+
+  return this.http.post<ChatResponse>(
+    `${this.apiUrl}/chat/conversation/${conversationId}`,
+    { prompt },
+    { headers }
+  );
+}
 
   uploadFile(token: string, file: FormData) {
     const headers = new HttpHeaders({
