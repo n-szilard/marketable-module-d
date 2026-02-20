@@ -1,0 +1,72 @@
+<div class="generator-wrapper">
+    
+    <!-- HEADER -->
+    <div class="header">
+      <div class="header-icon">✦</div>
+      <h2>Képgenerátor</h2>
+      <p class="subtitle">Írj le egy képet, és mi megalkotjuk</p>
+    </div>
+  
+    <!-- PROMPT SZEKCIÓ -->
+    <div class="prompt-section">
+      <div class="textarea-wrapper">
+        <textarea
+          [(ngModel)]="prompt"
+          placeholder="Pl.: Egy napfelkeltés a hegycsúcson, élénk narancssárga és lila árnyalatokkal..."
+          rows="4"
+          [disabled]="loading"
+          (keydown.ctrl.enter)="generate()"
+        ></textarea>
+        <span class="char-count">{{ prompt.length }} karakter</span>
+      </div>
+  
+      <button class="btn-generate" (click)="generate()" [disabled]="loading || !prompt.trim()">
+        <span *ngIf="!loading">✦ Generálás</span>
+        <span *ngIf="loading" class="spinner-text">
+          <span class="dot-spinner"></span> Folyamatban...
+        </span>
+      </button>
+    </div>
+  
+    <!-- STÁTUSZ / PROGRESS -->
+    <div class="status-section" *ngIf="status && loading">
+      <div class="status-label">
+        <span class="status-dot" [ngClass]="status.status"></span>
+        <span>{{ statusText }}</span>
+      </div>
+      <div class="progress-bar" *ngIf="status.progress != null">
+        <div class="progress-fill" [style.width.%]="progressPercent"></div>
+      </div>
+    </div>
+  
+    <!-- HIBA -->
+    <div class="error-box" *ngIf="errorMsg">
+      <span>⚠</span> {{ errorMsg }}
+    </div>
+  
+    <!-- EREDMÉNY KÉP -->
+    <div class="result-section" *ngIf="imageUrl">
+      <div class="image-frame">
+        <img [src]="imageUrl" alt="Generált kép" />
+      </div>
+  
+      <!-- MŰVELETEK -->
+      <div class="action-buttons">
+        <button class="btn-action" (click)="upscale()" [disabled]="loading" title="Kép felbontásának duplázása">
+          <span class="btn-icon">⬆</span>
+          <span class="btn-label">Upscale <em>2×</em></span>
+        </button>
+        <button class="btn-action" (click)="zoomIn()" [disabled]="loading" title="Közelebb zoom">
+          <span class="btn-icon">🔍+</span>
+          <span class="btn-label">Zoom In <em>2×</em></span>
+        </button>
+        <button class="btn-action" (click)="zoomOut()" [disabled]="loading" title="Távolabb zoom">
+          <span class="btn-icon">🔍−</span>
+          <span class="btn-label">Zoom Out <em>2×</em></span>
+        </button>
+      </div>
+  
+      <p class="job-id">Job ID: <code>{{ currentJobId }}</code></p>
+    </div>
+  
+  </div>

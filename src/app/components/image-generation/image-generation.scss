@@ -1,0 +1,303 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+:host {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* ─── WRAPPER ─────────────────────────────── */
+.generator-wrapper {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 24px 64px;
+  color: #1a1a2e;
+}
+
+/* ─── HEADER ──────────────────────────────── */
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+
+  .header-icon {
+    font-size: 2rem;
+    color: #e03e6e;
+    margin-bottom: 12px;
+    animation: pulse 3s ease-in-out infinite;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 8px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #e03e6e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #888;
+    font-weight: 300;
+    margin: 0;
+  }
+}
+
+/* ─── PROMPT SZEKCIÓ ──────────────────────── */
+.prompt-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.textarea-wrapper {
+  position: relative;
+
+  textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    padding-bottom: 36px;
+    border: 2px solid #e8e8f0;
+    border-radius: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #1a1a2e;
+    background: #fafafe;
+    resize: vertical;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+
+    &::placeholder { color: #bbb; }
+
+    &:focus {
+      border-color: #e03e6e;
+      box-shadow: 0 0 0 4px rgba(224, 62, 110, 0.08);
+      background: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  .char-count {
+    position: absolute;
+    bottom: 10px;
+    right: 16px;
+    font-size: 0.75rem;
+    color: #bbb;
+  }
+}
+
+.btn-generate {
+  align-self: flex-end;
+  padding: 14px 36px;
+  background: #1a1a2e;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  letter-spacing: 0.02em;
+
+  &:hover:not(:disabled) {
+    background: #e03e6e;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(224, 62, 110, 0.25);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .spinner-text {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* ─── PROGRESS / STÁTUSZ ──────────────────── */
+.status-section {
+  background: #f5f5fc;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+
+  .status-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+  }
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.pending    { background: #ffc107; }
+    &.processing { background: #e03e6e; animation: pulse 1s infinite; }
+    &.completed  { background: #28a745; }
+    &.failed     { background: #dc3545; }
+  }
+
+  .status-message {
+    font-size: 0.85rem;
+    color: #888;
+    margin: 8px 0 0;
+  }
+}
+
+.progress-bar {
+  height: 6px;
+  background: #e0e0f0;
+  border-radius: 999px;
+  overflow: hidden;
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #e03e6e, #ff6b9d);
+    border-radius: 999px;
+    transition: width 0.4s ease;
+  }
+}
+
+/* ─── HIBA ────────────────────────────────── */
+.error-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #fff1f4;
+  border: 1px solid #f8c8d4;
+  border-radius: 12px;
+  padding: 14px 20px;
+  color: #c0304e;
+  font-size: 0.95rem;
+  margin-bottom: 24px;
+}
+
+/* ─── EREDMÉNY ────────────────────────────── */
+.result-section {
+  animation: fadeInUp 0.5s ease;
+}
+
+.image-frame {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  margin-bottom: 20px;
+  background: #f0f0f8;
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
+
+/* ─── AKCIÓ GOMBOK ────────────────────────── */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.btn-action {
+  flex: 1;
+  min-width: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 16px 12px;
+  background: #fff;
+  border: 2px solid #e8e8f0;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'DM Sans', sans-serif;
+
+  .btn-icon {
+    font-size: 1.3rem;
+  }
+
+  .btn-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #444;
+
+    em {
+      font-style: normal;
+      color: #e03e6e;
+      font-weight: 700;
+    }
+  }
+
+  &:hover:not(:disabled) {
+    border-color: #e03e6e;
+    background: #fff8fa;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(224, 62, 110, 0.12);
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.job-id {
+  font-size: 0.78rem;
+  color: #bbb;
+  text-align: right;
+
+  code {
+    background: #f5f5fc;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+  }
+}
+
+/* ─── ANIMÁCIÓK ───────────────────────────── */
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.7; transform: scale(1.15); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.dot-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FileUploadEvent, FileUploadModule } from 'primeng/fileupload';
 import { ButtonModule } from 'primeng/button';
 import { ApiService } from '../../services/api.service';
+import { MessageService } from 'primeng/api';
 
 interface UploadEvent {
   originalEvent: Event;
@@ -19,7 +20,7 @@ export class ImageRecognition implements OnInit {
 
   private token: string | null = '';
 
-  constructor(private router: Router, private api: ApiService) {
+  constructor(private router: Router, private api: ApiService, private message: MessageService) {
     const navigation = this.router.currentNavigation();
     const state = navigation?.extras.state as { token: any };
   
@@ -32,7 +33,7 @@ export class ImageRecognition implements OnInit {
   }
 
 
-  onUpload(event: FileUploadEvent) {
+  onUpload(event: any) {
 
     if (this.token == null) {
       return;
@@ -49,6 +50,11 @@ export class ImageRecognition implements OnInit {
       },
       error: (err) => {
         console.log(err);
+        this.message.add({
+          severity: 'error',
+          summary: 'Hiba',
+          detail: err.error.detail
+        })
       }
     });
   }
