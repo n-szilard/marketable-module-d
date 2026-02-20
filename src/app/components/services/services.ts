@@ -2,7 +2,8 @@
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../services/api.service';
-import { Footer } from '../footer/footer'
+import { Footer } from '../footer/footer';
+import { AIType } from '../../interfaces/AITypeEnum';
 
 @Component({
   selector: 'app-services',
@@ -17,17 +18,32 @@ export class ServicesComponent {
     private router: Router,
     private api: ApiService
   ) { }
+  public TypeEnum = AIType;
 
-  popUp() {
+
+  checkToken(type: AIType) {
     let token = prompt("Add meg a tokent!")
     if (token == null) {
       return;
     }
 
+
     this.api.startConversation(token, 'string').subscribe({
       next: (res) => {
         alert('jo')
-        console.log(res);
+        switch (type) {
+          case AIType.Chat:
+            break;
+          case AIType.ImageGen:
+            break;
+          case AIType.ImageRec:
+            this.router.navigate(['/imagerecognition'], {
+              state: {
+                token: token
+              }
+            })
+            break;
+        }
       },
       error: (error) => {
         alert('nemjo');

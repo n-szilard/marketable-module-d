@@ -1,0 +1,116 @@
+/* TELJES OLDAL HÁTTÉR */
+.page-bg {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('../../../../public/img/Aibg.jpg'); // ide tedd a képet
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* BLUR + DARK OVERLAY */
+  .page-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(1px);
+    background: rgba(2, 6, 23, 0.75);
+  }
+  
+  /* CHAT PANEL */
+  .chat-card {
+    position: relative;
+    width: 520px;
+    height: 640px;
+    background: rgba(15, 23, 42, 0.85);
+    border-radius: 18px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    color: #e5e7eb;
+    font-family: Inter, sans-serif;
+    z-index: 1;
+  }
+  
+  /* HEADER */
+  .chat-header {
+    padding: 16px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+  }
+  
+  /* BODY */
+  .chat-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* ÜZENETEK */
+  .message {
+    max-width: 75%;
+    display: flex;
+  
+    &.assistant {
+      align-self: flex-start;
+  
+      .bubble {
+        background: rgba(30, 41, 59, 0.9);
+      }
+    }
+  
+    &.user {
+      align-self: flex-end;
+  
+      .bubble {
+        background: linear-gradient(135deg, #2563eb, #4f46e5);
+        color: white;
+      }
+    }
+  }
+  
+  .bubble {
+    padding: 12px 16px;
+    border-radius: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  
+  /* FOOTER */
+  .chat-footer {
+    display: flex;
+    padding: 14px;
+    gap: 10px;
+    border-top: 1px solid rgba(148, 163, 184, 0.15);
+  
+    input {
+      flex: 1;
+      background: rgba(2, 6, 23, 0.8);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 12px;
+      padding: 12px 14px;
+      color: #e5e7eb;
+      outline: none;
+    }
+  
+    button {
+      background: #2563eb;
+      border: none;
+      border-radius: 12px;
+      padding: 0 18px;
+      color: white;
+      cursor: pointer;
+  
+      &:hover {
+        background: #1d4ed8;
+      }
+    }
+  }

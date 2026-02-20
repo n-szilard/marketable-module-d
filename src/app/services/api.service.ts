@@ -54,4 +54,13 @@ export class ApiService {
 
     return this.http.post(this.apiUrl+'/chat/conversation', body, { headers });
   }
+
+  uploadFile(token: string, file: FormData) {
+    const headers = new HttpHeaders({
+      'accept': 'application/json',
+      'X-API-TOKEN': token
+    });
+
+    return this.http.post(this.apiUrl + '/imagerecognition/recognize', file, { headers })
+  }
 }
