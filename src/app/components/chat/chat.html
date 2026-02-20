@@ -1,14 +1,25 @@
-<div class="html">
-    <div class="leftsection">
-
+<div class="chat-wrapper">
+    <div class="chat-container">
+      
+      <div 
+        *ngFor="let msg of messages" 
+        class="message"
+        [ngClass]="msg.role">
+  
+        <div class="bubble">
+          {{ msg.content }}
+        </div>
+  
+      </div>
+  
     </div>
-
-    <div class="middlesection">
-        <h1>Welcome to Marktable IT Skills</h1>
+  
+    <div class="chat-input">
+      <input 
+        [(ngModel)]="userInput"
+        (keyup.enter)="sendMessage()"
+        placeholder="Írj egy üzenetet..."
+      />
+      <button (click)="sendMessage()">➤</button>
     </div>
-
-    <div class="rightsection">
-
-    </div>
-
-</div>
+  </div>
