@@ -41,36 +41,35 @@ export class ApiService {
     return false;
   }
 
-
-// +++ CHAT +++
-
-startConversation(token: string, prompt: string): Observable<ChatResponse> {
-  const headers = new HttpHeaders({
-    'accept': 'application/json',
-    'Content-Type': 'application/json',
-    'X-API-TOKEN': token
-  });
-
-  return this.http.post<ChatResponse>(
-    `${this.apiUrl}/chat/conversation`,
-    { prompt },
-    { headers }
-  );
-}
-
-continueConversation(token: string, conversationId: string, prompt: string): Observable<ChatResponse> {
-  const headers = new HttpHeaders({
-    'accept': 'application/json',
-    'Content-Type': 'application/json',
-    'X-API-TOKEN': token
-  });
-
-  return this.http.post<ChatResponse>(
-    `${this.apiUrl}/chat/conversation/${conversationId}`,
-    { prompt },
-    { headers }
-  );
-}
+  startConversation(token: string, prompt: string): Observable<ChatResponse> {
+    const headers = new HttpHeaders({
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-API-TOKEN': token
+    });
+    return this.http.post<ChatResponse>(`${this.apiUrl}/chat/conversation`, { prompt }, { headers });
+  }
+  
+  continueConversation(token: string, conversationId: string, prompt: string): Observable<ChatResponse> {
+    const headers = new HttpHeaders({
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-API-TOKEN': token
+    });
+    return this.http.put<ChatResponse>(`${this.apiUrl}/chat/conversation/${conversationId}`, { prompt }, { headers });
+  }
+  
+  getConversation(token: string, conversationId: string): Observable<ChatResponse> {
+    const headers = new HttpHeaders({
+      'accept': 'application/json',
+      'X-API-TOKEN': token
+    });
+  
+    return this.http.get<ChatResponse>(
+      `${this.apiUrl}/chat/conversation/${conversationId}`,
+      { headers }
+    );
+  }
 
   uploadFile(token: string, file: FormData) {
     const headers = new HttpHeaders({

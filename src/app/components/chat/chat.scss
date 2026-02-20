@@ -1,8 +1,7 @@
-/* TELJES OLDAL HÁTTÉR */
 .page-bg {
     height: 100vh;
     width: 100vw;
-    background-image: url('../../../../public/img/Aibg.jpg'); // ide tedd a képet
+    background-image: url('../../../../public/img/Aibg.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -12,7 +11,6 @@
     justify-content: center;
   }
   
-  /* BLUR + DARK OVERLAY */
   .page-bg::before {
     content: '';
     position: absolute;
@@ -21,7 +19,6 @@
     background: rgba(2, 6, 23, 0.75);
   }
   
-  /* CHAT PANEL */
   .chat-card {
     position: relative;
     width: 520px;
@@ -36,7 +33,6 @@
     z-index: 1;
   }
   
-  /* HEADER */
   .chat-header {
     padding: 16px 20px;
     font-size: 16px;
@@ -44,7 +40,6 @@
     border-bottom: 1px solid rgba(148, 163, 184, 0.15);
   }
   
-  /* BODY */
   .chat-body {
     flex: 1;
     padding: 20px;
@@ -54,7 +49,7 @@
     gap: 12px;
   }
   
-  /* ÜZENETEK */
+
   .message {
     max-width: 75%;
     display: flex;
@@ -84,7 +79,7 @@
     line-height: 1.5;
   }
   
-  /* FOOTER */
+
   .chat-footer {
     display: flex;
     padding: 14px;

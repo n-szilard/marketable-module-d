@@ -1,20 +1,17 @@
 <div class="page-bg">
     <div class="chat-card">
-      <div class="chat-header">Chat</div>
-  
-      <div class="chat-body" #chatBody>
-        <div *ngFor="let msg of messages" class="message" [ngClass]="msg.role">
-          <div class="bubble">{{ msg.content }}</div>
+        <div class="chat-header">Chat</div>
+
+        <div class="chat-body" #chatBody>
+            <div *ngFor="let msg of messages" class="message" [ngClass]="msg.role">
+                <div class="bubble">{{ msg.content }}</div>
+            </div>
         </div>
-      </div>
-  
-      <div class="chat-footer">
-        <input
-          [(ngModel)]="userInput"
-          (keyup.enter)="sendMessage()"
-          placeholder="Írj ide..."
-        />
-        <button (click)="sendMessage()">➤</button>
-      </div>
+
+        <div class="chat-footer">
+            <input [(ngModel)]="userInput" (keyup.enter)="sendMessage()" [disabled]="loading"
+                [placeholder]="loading ? 'AI válaszol…' : 'Írj ide...'" />
+            <button (click)="sendMessage()" [disabled]="loading">➤</button>
+        </div>
     </div>
-  </div>
+</div>

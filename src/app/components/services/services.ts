@@ -33,6 +33,13 @@ export class ServicesComponent {
         alert('jo')
         switch (type) {
           case AIType.Chat:
+            this.router.navigate(['/chat'],
+              {
+                state:{
+                  token:token
+                }
+              }
+            )
             break;
           case AIType.ImageGen:
             break;
