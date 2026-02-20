@@ -9,5 +9,22 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './chat.scss',
 })
 export class ChatComponent {
-
+  messages = [
+    { role: 'assistant', content: 'Szia! Miben segíthetek?' }
+  ];
+  
+  userInput = '';
+  
+  sendMessage() {
+    if (!this.userInput.trim()) return;
+  
+    this.messages.push({
+      role: 'user',
+      content: this.userInput
+    });
+  
+    // TODO: backend hívás ide
+  
+    this.userInput = '';
+  }
 }
