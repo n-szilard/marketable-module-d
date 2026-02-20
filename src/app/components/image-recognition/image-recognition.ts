@@ -33,7 +33,7 @@ export class ImageRecognition implements OnInit {
   }
 
 
-  onUpload(event: FileUploadEvent) {
+  onUpload(event: any) {
 
     if (this.token == null) {
       return;
