@@ -3,14 +3,8 @@
       <div class="chat-header">Chat</div>
   
       <div class="chat-body" #chatBody>
-        <div
-          *ngFor="let msg of messages"
-          class="message"
-          [ngClass]="msg.role"
-        >
-          <div class="bubble">
-            {{ msg.content }}
-          </div>
+        <div *ngFor="let msg of messages" class="message" [ngClass]="msg.role">
+          <div class="bubble">{{ msg.content }}</div>
         </div>
       </div>
   
